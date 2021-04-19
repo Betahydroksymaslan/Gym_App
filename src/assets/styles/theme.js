@@ -1,0 +1,33 @@
+export const theme = {
+  colors: {
+    white: '#FFFFFF',
+    mainDark: '#2e2f33',
+    mainColor: '#9475f4',
+    mainDarkFont: '#747578',
+    lightGrey: '#F7F8FA',
+    darkGrey: '#EFEFEF',
+    mainGradient: 'linear-gradient(to top left, #6f66ed, #ac7df7)',
+    mainGradientHover: 'linear-gradient(to bottom right, #6f66ed, #ac7df7)',
+    mainGradientToLeft: 'linear-gradient(to left, #6f66ed, #ac7df7)',
+    mainGradientToTop: 'linear-gradient(to top, #6f66ed, #ac7df7)',
+    inputBorderLight: '#f2f2f2',
+    grey: '#C0C7D6',
+    black: '#111111',
+    success: '#8FCB81',
+    error: '#CB8581',
+    warning: '#E1D888',
+  },
+  fontSize: {
+    headers: '40px',
+    xl: '25px',
+    l: '22px',
+    m: '20px',
+    s: '16px',
+    xs: '13px',
+  },
+  media: {
+    phone: '@media (max-width: 600px)',
+    tablet: '@media (min-width: 601px)',
+    desktop: '@media (min-width: 992px)',
+  },
+};
