@@ -12,13 +12,15 @@ import {
 import Input from 'components/atoms/Input/Input';
 import Button from 'components/atoms/Button/Button';
 import Form from 'components/organisms/Form/Form';
-import { SIGNUP } from 'constants/routes';
+import { SIGNUP, HOME } from 'constants/routes';
 import { useForm } from 'react-hook-form';
 import { useAuth } from 'store/AuthContext';
 import { useHistory } from 'react-router-dom';
+import Loader from 'components/atoms/Loader/Loader';
 
 const Login = (props) => {
   const [errorMessage, setErrorMessage] = useState('');
+  const [loading, setLoading] = useState(false);
   const history = useHistory();
 
   const {
@@ -27,15 +29,17 @@ const Login = (props) => {
     formState: { errors },
   } = useForm();
 
-  const { signin } = useAuth();
+  const { login } = useAuth();
 
   const onSubmit = async (data) => {
     try {
-      await signin(data.email, data.password);
-      history.push('/');
+      setLoading(true);
+      await login(data.email, data.password);
+      history.push(HOME);
     } catch {
       setErrorMessage('Login lub hasło są niepoprawne :/');
     }
+    setLoading(false);
   };
   return (
     <PageWrapper>
@@ -54,12 +58,13 @@ const Login = (props) => {
           {...register('password', { required: true })}
         />
         {errors.password && <ErrorMessage>pole wymagane</ErrorMessage>}
-        <Button type="submit">Zaloguj się</Button>
+        <Button disabled={loading} type="submit">Zaloguj się</Button>
       </Form>
       <LinkWrapper>
         <Text>Nie masz jeszcze konta?</Text>
         <StyledLink to={SIGNUP}>Zarejestruj się</StyledLink>
       </LinkWrapper>
+      {loading && <Loader />}
     </PageWrapper>
   );
 };

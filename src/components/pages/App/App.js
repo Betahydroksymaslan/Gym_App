@@ -9,6 +9,7 @@ import Home from 'components/pages/Home/Home';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { SIGNIN, SIGNUP, HOME } from 'constants/routes';
 import { AuthProvider } from 'store/AuthContext';
+import PrivateRoute from 'helpers/PrivateRoute';
 
 function App() {
   return (
@@ -18,8 +19,7 @@ function App() {
         <AuthProvider>
           <AppWrapper>
             <Switch>
-              <Route exact path={HOME} component={Home} />
-
+              <PrivateRoute exact path={HOME} component={Home} />
               <Route path={SIGNUP} component={Registration} />
               <Route path={SIGNIN} component={Login} />
             </Switch>

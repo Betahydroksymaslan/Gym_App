@@ -12,13 +12,16 @@ import {
 import Input from 'components/atoms/Input/Input';
 import Button from 'components/atoms/Button/Button';
 import Form from 'components/organisms/Form/Form';
-import { SIGNIN } from 'constants/routes';
+import { SIGNIN, HOME } from 'constants/routes';
 import { useForm } from 'react-hook-form';
 import { useAuth } from 'store/AuthContext';
 import { useHistory } from 'react-router-dom';
+import Loader from 'components/atoms/Loader/Loader';
+import { db } from 'assets/firebase/firebase';
 
 const Registration = (props) => {
   const [errorMessage, setErrorMessage] = useState('');
+  const [loading, setLoading] = useState(false);
   const history = useHistory();
 
   const {
@@ -29,14 +32,24 @@ const Registration = (props) => {
 
   const { signup } = useAuth();
 
+  const addUserToDB = async (user) => {
+    await db.ref(`/users/${user.user.uid}`).set({
+      email: user.user.email,
+      uid: user.user.uid,
+    });
+  };
+
   const onSubmit = async (data) => {
-    console.log(data.email);
     try {
-      await signup(data.email, data.password);
-      history.push('/');
+      setLoading(true);
+      let response = await signup(data.email, data.password);
+      console.log(response);
+      await addUserToDB(response);
+      history.push(HOME);
     } catch {
       setErrorMessage('Ups, coś poszło nie tak :/');
     }
+    setLoading(false);
   };
   return (
     <PageWrapper>
@@ -55,12 +68,15 @@ const Registration = (props) => {
           {...register('password', { required: true })}
         />
         {errors.password && <ErrorMessage>pole wymagane</ErrorMessage>}
-        <Button type="submit">Zarejestruj się</Button>
+        <Button disabled={loading} type="submit">
+          Zarejestruj się
+        </Button>
       </Form>
       <LinkWrapper>
         <Text>Masz już konto?</Text>
         <StyledLink to={SIGNIN}>Zaloguj się</StyledLink>
       </LinkWrapper>
+      {loading && <Loader />}
     </PageWrapper>
   );
 };

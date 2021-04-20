@@ -1,3 +1,3 @@
-export const SIGNUP = '/signup';
-export const SIGNIN = '/signin';
-export const HOME = '/';
+export const SIGNUP = '/Gym_App/signup';
+export const SIGNIN = '/Gym_App/signin';
+export const HOME = '/Gym_App/';
