@@ -1,17 +1,12 @@
 export const theme = {
   colors: {
     white: '#FFFFFF',
-    mainDark: '#2e2f33',
-    mainColor: '#9475f4',
-    mainDarkFont: '#747578',
-    lightGrey: '#F7F8FA',
-    darkGrey: '#EFEFEF',
-    mainGradient: 'linear-gradient(to top left, #6f66ed, #ac7df7)',
-    mainGradientHover: 'linear-gradient(to bottom right, #6f66ed, #ac7df7)',
-    mainGradientToLeft: 'linear-gradient(to left, #6f66ed, #ac7df7)',
-    mainGradientToTop: 'linear-gradient(to top, #6f66ed, #ac7df7)',
-    inputBorderLight: '#f2f2f2',
-    grey: '#C0C7D6',
+    mainColor: '#292B4D',
+    mainColorLight: '#353766',
+    lightGrey: '#F0F0F4',
+    green: '#69AB56',
+    red: '#C4686F',
+    active: '#17D1E0',
     black: '#111111',
     success: '#8FCB81',
     error: '#CB8581',
@@ -19,11 +14,14 @@ export const theme = {
   },
   fontSize: {
     headers: '40px',
-    xl: '25px',
-    l: '22px',
-    m: '20px',
-    s: '16px',
-    xs: '13px',
+    xl: '30px',
+    l: '25px',
+    m: '22px',
+    s: '18px',
+    xs: '14px',
+  },
+  boxShadow: {
+    mainShadow: '0 4px 5px 0 rgba(0,0,0,0.25)'
   },
   media: {
     phone: '@media (max-width: 600px)',
