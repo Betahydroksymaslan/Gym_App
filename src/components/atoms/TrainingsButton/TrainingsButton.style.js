@@ -3,9 +3,9 @@ import styled from 'styled-components';
 export const StyledButton = styled.button`
   margin: 20px 0;
   padding: 15px 50px;
-  width: ${({wider}) => wider && '100%'};
-  border-radius: ${({ wider }) => (wider ? '10px' : '15px')};
-  background-color: ${({ theme, active }) => active ? theme.colors.active : theme.colors.mainColorLight};
+  width: 90%;
+  border-radius: 10px;
+  background-color: ${({ theme }) => theme.colors.mainColorLight};
   border: none;
   outline: none;
   color: ${({ theme }) => theme.colors.lightGrey};
@@ -16,8 +16,5 @@ export const StyledButton = styled.button`
   &:active {
     background-color: ${({ theme }) => theme.colors.active};
     transform: scale(1.02);
-  }
-  &:disabled {
-    opacity: 0.3;
   }
 `;

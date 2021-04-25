@@ -1,15 +1,19 @@
 import styled from 'styled-components';
 
 export const StyledInput = styled.input`
-  width: 70%;
-  background-color: ${({ theme }) => theme.colors.mainColorLight};
+  width: ${({ line }) => (line ? '85%' : '70%')};
+  background-color: ${({ theme, line }) =>
+    line ? 'transparent' : theme.colors.mainColorLight};
   border: none;
+  border-bottom: ${({ line, theme }) =>
+    line ? `1px solid ${theme.colors.lightGrey}` : 'none'};
   padding: 10px 20px;
-  border-radius: 10px;
+  border-radius: ${({line}) => line ? 'none' : '10px'};
   outline: none;
   color: ${({ theme }) => theme.colors.lightGrey};
-  font-size: ${({theme}) => theme.fontSize.l};
+  font-size: ${({ theme }) => theme.fontSize.l};
   font-weight: 300;
   margin: 15px 0;
-  box-shadow: ${({ theme }) => theme.boxShadow.mainShadow}
+  box-shadow: ${({ theme, line }) =>
+    line ? 'none' : theme.boxShadow.mainShadow};
 `;

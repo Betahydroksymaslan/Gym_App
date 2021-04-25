@@ -13,7 +13,6 @@ import Input from 'components/atoms/Input/Input';
 import Button from 'components/atoms/Button/Button';
 import Form from 'components/organisms/Form/Form';
 import { SIGNIN, HOME } from 'constants/routes';
-import { useForm } from 'react-hook-form';
 import { useAuth } from 'store/AuthContext';
 import { useHistory } from 'react-router-dom';
 import Loader from 'components/atoms/Loader/Loader';
@@ -24,11 +23,6 @@ const Registration = (props) => {
   const [loading, setLoading] = useState(false);
   const history = useHistory();
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
 
   const { signup } = useAuth();
 
@@ -55,19 +49,19 @@ const Registration = (props) => {
     <PageWrapper>
       <Header>Rejestracja</Header>
       {errorMessage && <ServerErrorMessage>{errorMessage}</ServerErrorMessage>}
-      <Form onSubmit={handleSubmit(onSubmit)}>
+      <Form onSubmit={onSubmit}>
         <Input
           placeholder="email"
           type="email"
-          {...register('email', { required: true })}
+          name="email"
         />
-        {errors.email && <ErrorMessage>pole wymagane</ErrorMessage>}
+        {/*errors.email && <ErrorMessage>pole wymagane</ErrorMessage>*/}
         <Input
           placeholder="hasło"
           type="password"
-          {...register('password', { required: true })}
+          name="password"
         />
-        {errors.password && <ErrorMessage>pole wymagane</ErrorMessage>}
+        {/*errors.password && <ErrorMessage>pole wymagane</ErrorMessage>*/}
         <Button disabled={loading} type="submit">
           Zarejestruj się
         </Button>

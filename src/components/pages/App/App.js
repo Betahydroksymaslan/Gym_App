@@ -7,9 +7,11 @@ import Registration from 'components/pages/Registration/Registration';
 import Login from 'components/pages/Login/Login';
 import Home from 'components/pages/Home/Home';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import { SIGNIN, SIGNUP, HOME } from 'constants/routes';
+import { SIGNIN, SIGNUP, HOME, TRAININGS } from 'constants/routes';
 import { AuthProvider } from 'store/AuthContext';
 import PrivateRoute from 'helpers/PrivateRoute';
+import Trainings from 'components/pages/Trainings/Trainings';
+import { DatabaseProvider } from 'store/databaseContext';
 
 function App() {
   return (
@@ -17,13 +19,16 @@ function App() {
       <GlobalStyle />
       <Router>
         <AuthProvider>
-          <AppWrapper>
-            <Switch>
-              <PrivateRoute exact path={HOME} component={Home} />
-              <Route path={SIGNUP} component={Registration} />
-              <Route path={SIGNIN} component={Login} />
-            </Switch>
-          </AppWrapper>
+          <DatabaseProvider>
+            <AppWrapper>
+              <Switch>
+                <PrivateRoute exact path={HOME} component={Home} />
+                <Route path={SIGNUP} component={Registration} />
+                <Route path={SIGNIN} component={Login} />
+                <PrivateRoute path={TRAININGS} component={Trainings} />
+              </Switch>
+            </AppWrapper>
+          </DatabaseProvider>
         </AuthProvider>
       </Router>
     </ThemeProvider>
