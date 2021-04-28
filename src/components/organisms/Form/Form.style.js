@@ -3,10 +3,9 @@ import styled from 'styled-components';
 export const StyledForm = styled.form`
   width: 100%;
   height: ${({ height }) => height || 'auto'};
-  max-height: 70%;
-  overflow-y: scroll;
   display: flex;
-  flex-direction: column;
+  flex-direction: ${({ row }) => (row ? 'row' : 'column')};
+  flex-wrap: ${({row}) => row ? 'wrap' : 'nowrap'};
   align-items: center;
-  justify-content: center;
+  justify-content: ${({row}) => row ? 'space-evenly' : 'center'};
 `;

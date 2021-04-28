@@ -4,6 +4,7 @@ export const StyledButton = styled.input.attrs((props) => ({
   type: 'radio',
 }))`
   position: relative;
+  
   &::after {
     content: '${({ day }) => day}';
     display: block;

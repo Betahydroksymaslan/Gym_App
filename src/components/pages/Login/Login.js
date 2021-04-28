@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import {
   PageWrapper,
@@ -21,38 +21,39 @@ const Login = (props) => {
   const [errorMessage, setErrorMessage] = useState('');
   const [loading, setLoading] = useState(false);
   const history = useHistory();
-
+  const _isMounted = useRef(true);
 
   const { login } = useAuth();
 
   const onSubmit = async (data) => {
     try {
-      setLoading(true);
-      await login(data.email, data.password);
-      history.push(HOME);
+      if (_isMounted.current) {
+        setLoading(true);
+        await login(data.email, data.password);
+        history.push(HOME);
+      }
     } catch {
       setErrorMessage('Login lub hasło są niepoprawne :/');
     }
     setLoading(false);
   };
+
+  useEffect(() => {
+    return () => (_isMounted.current = false);
+  }, []);
+
   return (
     <PageWrapper>
       <Header>Logowanie</Header>
       {errorMessage && <ServerErrorMessage>{errorMessage}</ServerErrorMessage>}
       <Form onSubmit={onSubmit}>
-        <Input
-          placeholder="email"
-          type="email"
-          name="email"
-        />
+        <Input placeholder="email" type="email" name="email" />
         {/*errors.email && <ErrorMessage>pole wymagane</ErrorMessage>*/}
-        <Input
-          placeholder="hasło"
-          type="password"
-          name="password"
-        />
+        <Input placeholder="hasło" type="password" name="password" />
         {/*errors.password && <ErrorMessage>pole wymagane</ErrorMessage>*/}
-        <Button disabled={loading} type="submit">Zaloguj się</Button>
+        <Button disabled={loading} type="submit">
+          Zaloguj się
+        </Button>
       </Form>
       <LinkWrapper>
         <Text>Nie masz jeszcze konta?</Text>

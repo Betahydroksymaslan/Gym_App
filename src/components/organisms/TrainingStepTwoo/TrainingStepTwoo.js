@@ -23,9 +23,9 @@ const TrainingStepTwoo = ({ step, nextStep, previousStep }) => {
   };
   console.log(daysNum);
   return (
-    <Form onSubmit={handleOnSubmit} height="70%">
+    <Form onSubmit={handleOnSubmit} row height="70%">
       <Label>Wybierz ilość treningów w tygodniu</Label>
-
+    
       <RadioButton name="days" value={1} day="1" />
       <RadioButton name="days" value={2} day="2" />
       <RadioButton name="days" value={3} day="3" />

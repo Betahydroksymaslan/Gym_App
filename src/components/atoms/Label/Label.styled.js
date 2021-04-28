@@ -5,7 +5,7 @@ export const StyledLabel = styled.label`
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
-  font-size: ${({ theme }) => theme.fontSize.xl};
+  font-size: ${({ theme, small }) => small ? theme.fontSize.m : theme.fontSize.xl};
   font-weight: 300;
   text-align: center;
   margin-bottom: ${({ marginBottom }) => marginBottom || '0'};

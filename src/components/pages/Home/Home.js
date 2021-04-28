@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import { useAuth } from 'store/AuthContext';
 import { HomeWrapper, StyledLink } from './Home.style';
@@ -7,14 +7,21 @@ import { TRAININGS } from 'constants/routes';
 
 const Home = (props) => {
   const { logout } = useAuth();
+  const _isMounted = useRef(true);
 
   const handleLogout = async () => {
     try {
-      await logout();
+      if (_isMounted.current) {
+        await logout();
+      }
     } catch (error) {
       console.log(error);
     }
   };
+
+  useEffect(() => {
+    return () => (_isMounted.current = false);
+  }, []);
 
   return (
     <HomeWrapper>

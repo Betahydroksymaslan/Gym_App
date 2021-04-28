@@ -6,7 +6,7 @@ import Button from 'components/atoms/Button/Button';
 import { ButtonsWrapper } from './TrainingStepThree.style';
 import Label from 'components/atoms/Label/Label';
 import Input from 'components/atoms/Input/Input';
-import { useDatabase } from 'store/databaseContext';
+import { useDatabase } from 'store/DatabaseContext';
 import { useAuth } from 'store/AuthContext';
 
 const TrainingStepThree = ({ step, previousStep }) => {

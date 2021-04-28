@@ -6,12 +6,14 @@ import { AppWrapper } from './App.style';
 import Registration from 'components/pages/Registration/Registration';
 import Login from 'components/pages/Login/Login';
 import Home from 'components/pages/Home/Home';
+import Training from 'components/pages/Training/Training';
+import DoTraining from 'components/pages/DoTraining/DoTraining';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import { SIGNIN, SIGNUP, HOME, TRAININGS } from 'constants/routes';
+import { SIGNIN, SIGNUP, HOME, TRAININGS, DO_TRAINING } from 'constants/routes';
 import { AuthProvider } from 'store/AuthContext';
 import PrivateRoute from 'helpers/PrivateRoute';
 import Trainings from 'components/pages/Trainings/Trainings';
-import { DatabaseProvider } from 'store/databaseContext';
+import { DatabaseProvider } from 'store/DatabaseContext';
 
 function App() {
   return (
@@ -22,10 +24,20 @@ function App() {
           <DatabaseProvider>
             <AppWrapper>
               <Switch>
-                <PrivateRoute exact path={HOME} component={Home} />
                 <Route path={SIGNUP} component={Registration} />
                 <Route path={SIGNIN} component={Login} />
-                <PrivateRoute path={TRAININGS} component={Trainings} />
+                <PrivateRoute exact path={HOME} component={Home} />
+                <PrivateRoute exact path={TRAININGS} component={Trainings} />
+                <PrivateRoute
+                  exact
+                  path={`${TRAININGS}/:id`}
+                  component={Training}
+                />
+                <PrivateRoute
+                  exact
+                  path={`${DO_TRAINING}/:training/:day`}
+                  component={DoTraining}
+                />
               </Switch>
             </AppWrapper>
           </DatabaseProvider>

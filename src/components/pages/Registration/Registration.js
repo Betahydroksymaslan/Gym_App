@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import {
   PageWrapper,
@@ -22,7 +22,7 @@ const Registration = (props) => {
   const [errorMessage, setErrorMessage] = useState('');
   const [loading, setLoading] = useState(false);
   const history = useHistory();
-
+  const _isMounted = useRef(true);
 
   const { signup } = useAuth();
 
@@ -35,32 +35,31 @@ const Registration = (props) => {
 
   const onSubmit = async (data) => {
     try {
-      setLoading(true);
-      let response = await signup(data.email, data.password);
-      console.log(response);
-      await addUserToDB(response);
-      history.push(HOME);
+      if (_isMounted.current) {
+        setLoading(true);
+        let response = await signup(data.email, data.password);
+        console.log(response);
+        await addUserToDB(response);
+        history.push(HOME);
+      }
     } catch {
       setErrorMessage('Ups, coś poszło nie tak :/');
     }
     setLoading(false);
   };
+
+  useEffect(() => {
+    return () => (_isMounted.current = false);
+  }, []);
+
   return (
     <PageWrapper>
       <Header>Rejestracja</Header>
       {errorMessage && <ServerErrorMessage>{errorMessage}</ServerErrorMessage>}
       <Form onSubmit={onSubmit}>
-        <Input
-          placeholder="email"
-          type="email"
-          name="email"
-        />
+        <Input placeholder="email" type="email" name="email" />
         {/*errors.email && <ErrorMessage>pole wymagane</ErrorMessage>*/}
-        <Input
-          placeholder="hasło"
-          type="password"
-          name="password"
-        />
+        <Input placeholder="hasło" type="password" name="password" />
         {/*errors.password && <ErrorMessage>pole wymagane</ErrorMessage>*/}
         <Button disabled={loading} type="submit">
           Zarejestruj się
