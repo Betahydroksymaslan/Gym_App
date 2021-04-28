@@ -1,24 +1,24 @@
 {
   "files": {
     "main.css": "/Gym_App/static/css/main.a3029f3c.chunk.css",
-    "main.js": "/Gym_App/static/js/main.85fe8d07.chunk.js",
-    "main.js.map": "/Gym_App/static/js/main.85fe8d07.chunk.js.map",
+    "main.js": "/Gym_App/static/js/main.58bf7982.chunk.js",
+    "main.js.map": "/Gym_App/static/js/main.58bf7982.chunk.js.map",
     "runtime-main.js": "/Gym_App/static/js/runtime-main.1fdd0c66.js",
     "runtime-main.js.map": "/Gym_App/static/js/runtime-main.1fdd0c66.js.map",
-    "static/js/2.b428ff2f.chunk.js": "/Gym_App/static/js/2.b428ff2f.chunk.js",
-    "static/js/2.b428ff2f.chunk.js.map": "/Gym_App/static/js/2.b428ff2f.chunk.js.map",
+    "static/js/2.4fef8896.chunk.js": "/Gym_App/static/js/2.4fef8896.chunk.js",
+    "static/js/2.4fef8896.chunk.js.map": "/Gym_App/static/js/2.4fef8896.chunk.js.map",
     "static/js/3.fcd0bb17.chunk.js": "/Gym_App/static/js/3.fcd0bb17.chunk.js",
     "static/js/3.fcd0bb17.chunk.js.map": "/Gym_App/static/js/3.fcd0bb17.chunk.js.map",
     "index.html": "/Gym_App/index.html",
     "service-worker.js": "/Gym_App/service-worker.js",
     "service-worker.js.map": "/Gym_App/service-worker.js.map",
     "static/css/main.a3029f3c.chunk.css.map": "/Gym_App/static/css/main.a3029f3c.chunk.css.map",
-    "static/js/2.b428ff2f.chunk.js.LICENSE.txt": "/Gym_App/static/js/2.b428ff2f.chunk.js.LICENSE.txt"
+    "static/js/2.4fef8896.chunk.js.LICENSE.txt": "/Gym_App/static/js/2.4fef8896.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.1fdd0c66.js",
-    "static/js/2.b428ff2f.chunk.js",
+    "static/js/2.4fef8896.chunk.js",
     "static/css/main.a3029f3c.chunk.css",
-    "static/js/main.85fe8d07.chunk.js"
+    "static/js/main.58bf7982.chunk.js"
   ]
 }
