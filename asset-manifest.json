@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/Gym_App/static/css/main.a3029f3c.chunk.css",
-    "main.js": "/Gym_App/static/js/main.20d4e3ad.chunk.js",
-    "main.js.map": "/Gym_App/static/js/main.20d4e3ad.chunk.js.map",
+    "main.js": "/Gym_App/static/js/main.2c5bcbff.chunk.js",
+    "main.js.map": "/Gym_App/static/js/main.2c5bcbff.chunk.js.map",
     "runtime-main.js": "/Gym_App/static/js/runtime-main.e5e302fb.js",
     "runtime-main.js.map": "/Gym_App/static/js/runtime-main.e5e302fb.js.map",
     "static/js/2.df527562.chunk.js": "/Gym_App/static/js/2.df527562.chunk.js",
@@ -13,12 +13,15 @@
     "service-worker.js": "/Gym_App/service-worker.js",
     "service-worker.js.map": "/Gym_App/service-worker.js.map",
     "static/css/main.a3029f3c.chunk.css.map": "/Gym_App/static/css/main.a3029f3c.chunk.css.map",
-    "static/js/2.df527562.chunk.js.LICENSE.txt": "/Gym_App/static/js/2.df527562.chunk.js.LICENSE.txt"
+    "static/js/2.df527562.chunk.js.LICENSE.txt": "/Gym_App/static/js/2.df527562.chunk.js.LICENSE.txt",
+    "static/media/checkEqualIcon.cd612af8.svg": "/Gym_App/static/media/checkEqualIcon.cd612af8.svg",
+    "static/media/checkNoIcon.f28c5375.svg": "/Gym_App/static/media/checkNoIcon.f28c5375.svg",
+    "static/media/checkYesIcon.dc4cea6c.svg": "/Gym_App/static/media/checkYesIcon.dc4cea6c.svg"
   },
   "entrypoints": [
     "static/js/runtime-main.e5e302fb.js",
     "static/js/2.df527562.chunk.js",
     "static/css/main.a3029f3c.chunk.css",
-    "static/js/main.20d4e3ad.chunk.js"
+    "static/js/main.2c5bcbff.chunk.js"
   ]
 }
