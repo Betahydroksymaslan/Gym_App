@@ -8,6 +8,7 @@ export const TrainingWrapper = styled.div`
   flex-direction: column;
   align-items: center;
   padding: 5% 0;
+  visibility: hidden;
 `;
 export const DayWrapper = styled.div`
   width: 100%;
@@ -32,6 +33,7 @@ export const ButtonsWrapper = styled.div`
 
 export const ExerciseName = styled.span`
   justify-self: center;
+  text-align: center;
   font-size: ${({ theme }) => theme.fontSize.s};
   font-weight: ${({ template }) => (template ? '500' : '300')}; ;
 `;
@@ -45,4 +47,15 @@ export const RepsSpan = styled.span`
 export const SeriesSpan = styled.span`
   font-size: ${({ theme }) => theme.fontSize.s};
   font-weight: ${({ template }) => (template ? '500' : '300')};
+`;
+
+export const Back = styled.div`
+  width: 30px;
+  height: 30px;
+  border-bottom: 2px solid ${({theme}) => theme.colors.lightGrey};
+  border-left: 2px solid ${({theme}) => theme.colors.lightGrey};
+  position: absolute;
+  top: 20px;
+  left: 25px;
+  transform: rotate(45deg);
 `;

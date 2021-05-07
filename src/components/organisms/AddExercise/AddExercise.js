@@ -23,6 +23,7 @@ const AddExercise = ({ closeModal, id, path }) => {
       series: Number.parseInt(data.series),
       basicProgression: Number.parseFloat(data.progression),
       startWeight: Number.parseFloat(data.startWeight),
+      actualStatValue: Number.parseFloat(data.startWeight),
       progressionType: data.typeOfProgression,
       order: data.order,
       repsFrom: Number.parseInt(data.repsFrom),

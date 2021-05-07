@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { FormWrapper, ButtonsWrapper } from './AddTrainingForm.style';
-import Button from 'components/atoms/Button/Button';
+import { FormWrapper } from './AddTrainingForm.style';
 import ProgressBar from 'components/atoms/ProgressBar/ProgressBar';
 import TrainingStepFirst from 'components/organisms/TrainingStepFirst/TrainingStepFirst';
 import TrainingStepTwoo from 'components/organisms/TrainingStepTwoo/TrainingStepTwoo';
 import TrainingStepThree from 'components/organisms/TrainingStepThree/TrainingStepThree';
 import { AddTrainingFormProvider } from 'store/AddTrainingContext';
+import { Escape } from 'components/organisms/UpdateWeightByHand/UpdateWeightByHand.style';
 
-const AddTrainingForm = (props) => {
+const AddTrainingForm = ({ closeModal }) => {
   const [step, setStep] = useState(1);
 
   const handleNextStep = () => {
@@ -20,19 +20,19 @@ const AddTrainingForm = (props) => {
     setStep((prevState) => prevState + -1);
   };
 
-const addTraining = (currentUser, db) => {
-  
-}
-
   return (
     <FormWrapper>
       <ProgressBar step={step} />
+      <Escape onClick={closeModal} />
       <AddTrainingFormProvider>
         <TrainingStepFirst step={step} nextStep={handleNextStep} />
-        <TrainingStepTwoo step={step} nextStep={handleNextStep} previousStep={handlePreviousStep} />
+        <TrainingStepTwoo
+          step={step}
+          nextStep={handleNextStep}
+          previousStep={handlePreviousStep}
+        />
         <TrainingStepThree step={step} previousStep={handlePreviousStep} />
       </AddTrainingFormProvider>
-      
     </FormWrapper>
   );
 };
