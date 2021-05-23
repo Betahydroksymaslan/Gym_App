@@ -4,13 +4,13 @@ import { StyledDiagram, StyledLabel, Average } from './Diagram.style';
 import { AreaChart, Area, YAxis, Tooltip, ResponsiveContainer } from 'recharts';
 
 const Diagram = ({ data, minValue, maxValue }) => {
-  const average = data && (((maxValue - 1) - (minValue + 1)) / (data.length - 1)).toFixed(1)
+  const average = data?.length > 1 ? (((maxValue - 1) - (minValue + 1)) / (data.length - 1)).toFixed(1) : 0;
 
   return (
     <div>
       <StyledLabel>średnia</StyledLabel>
       <StyledDiagram>
-        <Average>+{data ? average : '0'}</Average>
+        <Average>+{data?.length ? average : '0'} kg</Average>
         <ResponsiveContainer>
           <AreaChart
             data={data}

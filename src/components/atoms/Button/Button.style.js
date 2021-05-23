@@ -47,4 +47,11 @@ export const StyledButton = styled.button`
   &:disabled {
     opacity: 0.3;
   }
+  ${({ theme }) => theme.media.phoneNarrow} {
+    width: ${({ wider, squere }) => {
+      if (wider) return '100%';
+      if (squere) return '63px';
+    }};
+    height: ${({ squere }) => squere && '63px'};
+  }
 `;

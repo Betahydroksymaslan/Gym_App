@@ -14,6 +14,10 @@ export const StyledDiagram = styled.div`
   margin: 5px 0 20px;
   overflow: hidden;
   position: relative;
+  ${({ theme }) => theme.media.phoneNarrow} {
+    width: 180px;
+    height: 180px;
+  }
 `;
 
 export const Average = styled.span`

@@ -1,4 +1,4 @@
-import React, { useContext, useCallback } from 'react';
+import React, { useContext } from 'react';
 import { db } from 'assets/firebase/firebase';
 
 const DatabaseContext = React.createContext();
@@ -64,7 +64,16 @@ export function DatabaseProvider({ children }) {
       let exercisesData = [];
       let repsData = [];
       let statsData = [];
+      let notesArr = [];
       for (let id in value.exercises) {
+        for (let i in value.exercises[id].notes) {
+          notesArr.push({ ...value.exercises[id].notes[i] });
+        }
+        notesArr.sort((a, b) => {
+          const dateA = new Date(a.newDate);
+          const dateB = new Date(b.newDate);
+          return dateB - dateA;
+        });
         for (let i in value.exercises[id].reps) {
           repsData.push({ ...value.exercises[id].reps[i] });
         }
@@ -77,18 +86,27 @@ export function DatabaseProvider({ children }) {
           return dateA - dateB;
         });
         const sortedData = [...statsData];
-        sortedData?.sort((a,b) => a.weight - b.weight)
+        sortedData?.sort((a, b) => a.weight - b.weight);
         const minValue = sortedData[0]?.weight - 1;
-        const maxValue = sortedData?.splice(-1,1)[0]?.weight + 1;
+        const maxValue = sortedData?.splice(-1, 1)[0]?.weight + 1;
 
         const lastResultsData = [...statsData];
         lastResultsData?.reverse();
-        const lastResultsArray = lastResultsData?.splice(0,10).reverse();
-        
-        exercisesData.push({ ...value.exercises[id], repsData, statsData, minValue, maxValue, lastResultsArray });
+        const lastResultsArray = lastResultsData?.splice(0, 10).reverse();
+
+        exercisesData.push({
+          ...value.exercises[id],
+          repsData,
+          statsData,
+          minValue,
+          maxValue,
+          lastResultsArray,
+          notesArr,
+        });
         exercisesData.sort((a, b) => a.order - b.order);
         repsData = [];
         statsData = [];
+        notesArr = [];
       }
 
       temporaryData.push(...exercisesData);
@@ -96,12 +114,29 @@ export function DatabaseProvider({ children }) {
     });
   };
 
-  const addExercise = (currentUser, path, id, exercise, data, reps = []) => {
+  const addExercise = (
+    currentUser,
+    path,
+    id,
+    exercise,
+    data,
+    reps = [],
+    startWeight
+  ) => {
     const ref = db.ref(
       `/users/${currentUser}/trainings/${path}/${id}/exercises/${exercise}`
     );
 
     ref.update(data);
+
+    const resultsRef = db.ref(
+      `/users/${currentUser}/trainings/${path}/${id}/exercises/${exercise}/chartStats/start`
+    );
+
+    resultsRef.update({
+      date: 1,
+      weight: startWeight,
+    });
 
     const repsRef = db.ref(
       `/users/${currentUser}/trainings/${path}/${id}/exercises/${exercise}/reps`
@@ -141,8 +176,7 @@ export function DatabaseProvider({ children }) {
     startWeight,
     defaultValue
   ) => {
-    const date = new Date().toString().slice(4, 21);
-
+    const date = new Date().toString().slice(4, 15);
     const ref = db.ref(
       `/users/${currentUser}/trainings/${training}/${day}/exercises/${exercise}`
     );
@@ -173,7 +207,7 @@ export function DatabaseProvider({ children }) {
     markValue,
     actualStatValue
   ) => {
-    const date = new Date().toString().slice(4, 21);
+    const date = new Date().toString().slice(4, 15);
     const ref = db.ref(
       `/users/${currentUser}/trainings/${training}/${day}/exercises/${exercise}`
     );
@@ -215,7 +249,7 @@ export function DatabaseProvider({ children }) {
     exercise,
     actualStatValue
   ) => {
-    const date = new Date().toString().slice(4, 21);
+    const date = new Date().toString().slice(4, 15);
     const resultsRef = db.ref(
       `/users/${currentUser}/trainings/${training}/${day}/exercises/${exercise}/chartStats/${date}`
     );
@@ -238,15 +272,13 @@ export function DatabaseProvider({ children }) {
     reps = [],
     actualStatValue
   ) => {
-    const date = new Date().toString().slice(4, 21);
+    const date = new Date().toString().slice(4, 15);
 
     const ref = db.ref(
       `/users/${currentUser}/trainings/${training}/${day}/exercises/${exercise}/reps/${number}`
     );
 
-    const unit = Number.parseFloat(
-      (defaultValue / (reps.length - 1)).toFixed(1)
-    );
+    const unit = Number.parseFloat(defaultValue / (reps.length - 1));
 
     const resultsRef = db.ref(
       `/users/${currentUser}/trainings/${training}/${day}/exercises/${exercise}/chartStats/${date}`
@@ -282,6 +314,45 @@ export function DatabaseProvider({ children }) {
     });
   };
 
+  const addNotes = (currentUser, training, day, exercise, body) => {
+    const date = new Date().toString().slice(4, 21);
+    const id = new Date().toString().slice(4, 24);
+
+    const ref = db.ref(
+      `/users/${currentUser}/trainings/${training}/${day}/exercises/${exercise}/notes/${id}`
+    );
+
+    if (body) {
+      ref.update({
+        id: id,
+        newDate: date,
+        body: body,
+      });
+    }
+  };
+
+  const updateNotes = (currentUser, training, day, exercise, body, id) => {
+    const date = new Date().toString().slice(4, 21);
+
+    const ref = db.ref(
+      `/users/${currentUser}/trainings/${training}/${day}/exercises/${exercise}/notes/${id}`
+    );
+
+    if (body) {
+      ref.update({
+        newDate: date,
+        body: body,
+      });
+    }
+  };
+
+  const deleteNotes = (currentUser, training, day, exercise, id) => {
+    const ref = db.ref(
+      `/users/${currentUser}/trainings/${training}/${day}/exercises/${exercise}/notes/${id}`
+    );
+    ref.remove();
+  };
+
   const value = {
     addTraining,
     getTrainings,
@@ -294,6 +365,9 @@ export function DatabaseProvider({ children }) {
     resetRepsState,
     updateBySameValue,
     makeFirstRepActive,
+    addNotes,
+    deleteNotes,
+    updateNotes,
   };
 
   return (

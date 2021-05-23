@@ -9,6 +9,8 @@ import {
   RepsSpan,
   SeriesSpan,
   Back,
+  ExerciseBody,
+  OrderText,
 } from './Training.style';
 import { useParams, useHistory } from 'react-router-dom';
 import { useDatabase } from 'store/DatabaseContext';
@@ -20,6 +22,7 @@ import Link from 'components/atoms/Link/Link';
 import { DO_TRAINING } from 'constants/routes';
 import Loader from 'components/atoms/Loader/Loader';
 import gsap from 'gsap';
+import OptionsCirc from 'components/atoms/OptionsCirc/OptionsCirc';
 
 const Training = (props) => {
   const { id } = useParams();
@@ -65,18 +68,17 @@ const Training = (props) => {
     return (
       <DayWrapper key={item.name}>
         <Header small>{item.name}</Header>
-        <ExerciseWrapper>
-          <ExerciseName template>Nazwa</ExerciseName>
-          <SeriesSpan template>S</SeriesSpan>
-          <RepsSpan template>P</RepsSpan>
-        </ExerciseWrapper>
         {item.exercises &&
           item.exercises.map((item) => {
             return (
               <ExerciseWrapper key={item.exerciseName}>
-                <ExerciseName>{item.exerciseName}</ExerciseName>
-                <SeriesSpan>{item.series}</SeriesSpan>
-                <RepsSpan>{`${item.repsFrom} - ${item.repsTo}`}</RepsSpan>
+                <OrderText>{item.order}</OrderText>
+                <ExerciseBody>
+                  <ExerciseName>{item.exerciseName}</ExerciseName>
+                  <SeriesSpan>{item.series}s</SeriesSpan>
+                  <RepsSpan>{`${item.repsFrom} - ${item.repsTo}p`}</RepsSpan>
+                  <OptionsCirc data={['zmień', 'usuń']} />
+                </ExerciseBody>
               </ExerciseWrapper>
             );
           })}

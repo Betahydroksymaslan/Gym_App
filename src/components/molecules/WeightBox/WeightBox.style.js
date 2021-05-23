@@ -15,12 +15,19 @@ export const StyledBox = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-evenly;
+  ${({ theme }) => theme.media.phoneNarrow} {
+    width: 130px;
+    height: 80px;
+  }
 `;
 
 export const IconWrapper = styled.div`
   width: 50px;
   svg {
     width: 100%;
+  }
+  ${({ theme }) => theme.media.phoneNarrow} {
+    width: 45px;
   }
 `;
 

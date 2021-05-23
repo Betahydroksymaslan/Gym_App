@@ -23,7 +23,8 @@ const UpdateWeightByHand = ({
   resetReps,
   data,
   index,
-  actualStatValue
+  actualStatValue,
+  successAnimation,
 }) => {
   let modal = useRef(null);
   const [isPlus, setIsPlus] = useState(true);
@@ -36,6 +37,7 @@ const UpdateWeightByHand = ({
 
     try {
       if (_isMounted.current) {
+        successAnimation();
         await updateByHand(
           currentUser.uid,
           training,
@@ -46,7 +48,8 @@ const UpdateWeightByHand = ({
           isPlus,
           actualStatValue
         );
-        (number !== 0) && data[index]?.repsData.map((item) => resetReps(item.number));
+        number !== 0 &&
+          data[index]?.repsData.map((item) => resetReps(item.number));
         close();
       }
     } catch (error) {

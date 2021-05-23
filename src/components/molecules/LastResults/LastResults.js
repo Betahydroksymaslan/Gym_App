@@ -22,11 +22,11 @@ const LastResults = ({ data }) => {
 
     const Component = components[progress];
 
-    return (
+    return progress ? (
       <IconWrapper key={item.date}>
         <Component />
       </IconWrapper>
-    );
+    ) : null;
   });
   return (
     <TemplateWrapper>

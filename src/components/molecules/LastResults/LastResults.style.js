@@ -19,6 +19,9 @@ export const LastResultsBox = styled.div`
   display: flex;
   justify-content: space-evenly;
   align-items: center;
+  ${({theme}) => theme.media.phoneNarrow} {
+    height: 50px;
+  }
 `;
 
 export const IconWrapper = styled.div`
@@ -35,6 +38,17 @@ export const IconWrapper = styled.div`
       width: 80%;
       height: 80%;
     }
+  }
+  ${({theme}) => theme.media.phoneNarrow} {
+    svg {
+    width: 90%;
+    height: 90%;
+    &#a5b155be-4bc1-4879-9cd7-b68f415fc7ab,
+    &#bd036906-f292-4e3b-ae15-04a4aa2bc97f {
+      width: 70%;
+      height: 70%;
+    }
+  }
   }
 `;
 

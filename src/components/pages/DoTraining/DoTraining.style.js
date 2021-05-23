@@ -65,6 +65,10 @@ export const LastBox = styled.div`
   justify-content: space-evenly;
   align-items: center;
   padding: 0 5px;
+  ${({ theme }) => theme.media.phoneNarrow} {
+    width: 130px;
+    height: 67px;
+  }
 `;
 
 export const StyledLabel = styled.span`
@@ -77,8 +81,31 @@ export const IconWrapper = styled.div`
   svg {
     width: 100%;
   }
+  ${({ theme }) => theme.media.phoneNarrow} {
+    width: 30px;
+  }
 `;
 
 export const SeriesValue = styled.span`
   font-size: ${({ theme }) => theme.fontSize.xl};
+`;
+
+export const AddNoteWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid ${({ theme }) => theme.colors.lightGrey};
+  margin: 15px 0;
+  opacity: 0.5;
+`;
+export const AddNoteText = styled.span`
+  font-size: ${({ theme }) => theme.fontSize.m};
+  user-select: none;
+`;
+
+export const AddNoteIconWrapper = styled.div`
+  width: 20px;
+  margin-left: 7px;
+  svg {
+    width: 100%;
+  }
 `;

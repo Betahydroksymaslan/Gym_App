@@ -13,6 +13,9 @@ import {
   StyledLabel,
   IconWrapper,
   SeriesValue,
+  AddNoteWrapper,
+  AddNoteText,
+  AddNoteIconWrapper,
 } from './DoTraining.style';
 import { useParams, useHistory } from 'react-router-dom';
 import { useAuth } from 'store/AuthContext';
@@ -24,6 +27,10 @@ import ExerciseProgressBar from 'components/atoms/ExerciseProgressBar/ExercisePr
 import LastResults from 'components/molecules/LastResults/LastResults';
 import WeightBox from 'components/molecules/WeightBox/WeightBox';
 import { ReactComponent as SeriesIcon } from 'assets/icons/seriesIcon.svg';
+import Notes from 'components/organisms/Notes/Notes';
+import AddNotes from 'components/molecules/AddNotes/AddNotes';
+import SuccessAnim from 'components/atoms/SuccessAnim/SuccessAnim';
+import {ReactComponent as EditIcon} from 'assets/icons/editIcon.svg';
 
 const DoTraining = (props) => {
   const _isMounted = useRef(true);
@@ -38,12 +45,14 @@ const DoTraining = (props) => {
     resetRepsState,
     updateBySameValue,
     makeFirstRepActive,
+    deleteNotes,
   } = useDatabase();
 
   const [trainingDay, setTrainingDay] = useState([]);
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [index, setIndex] = useState(0);
   const [progress, setProgress] = useState('0%');
+  const [isNotesOpen, setIsNotesOpen] = useState(false);
   const lastElement = trainingDay.length - 1;
   let page = useRef(null);
 
@@ -62,6 +71,7 @@ const DoTraining = (props) => {
 
   const updateByDefaultButton = async () => {
     try {
+      successAnimation();
       await updateByDefaultValu(
         currentUser.uid,
         training,
@@ -89,6 +99,7 @@ const DoTraining = (props) => {
         trainingDay[index].repsData,
         trainingDay[index].actualStatValue
       );
+      successAnimation();
     } catch (error) {
       console.log(error);
     }
@@ -98,6 +109,10 @@ const DoTraining = (props) => {
     if (index === lastElement) return;
     setIndex((prevState) => prevState + 1);
   };
+
+  useEffect(() => {
+    //document.addEventListener("touch")
+  }, []);
 
   const goPreviousExercise = () => {
     if (index === 0) return;
@@ -113,6 +128,7 @@ const DoTraining = (props) => {
         trainingDay[index].exerciseName,
         trainingDay[index].actualStatValue
       );
+      successAnimation();
     } catch (error) {
       console.log(error);
     }
@@ -146,11 +162,22 @@ const DoTraining = (props) => {
     );
   });
 
+  const [isAnimationOn, setIsAnimationOn] = useState(false);
+
+  const successAnimation = () => {
+    setIsAnimationOn(true);
+    const resetAnimation = () => setIsAnimationOn(false);
+    setTimeout(resetAnimation, 1600);
+  };
+
+  const openAddNotes = () => setIsNotesOpen(true);
+  const closeAddNotes = () => setIsNotesOpen(false);
+
   useEffect(() => {
     const tl = gsap.timeline();
-    tl.fromTo(page, { duration: 0.3, autoAlpha: 0 }, { autoAlpha: 1 });
+    tl.fromTo(page, { duration: 0.5, autoAlpha: 0 }, { autoAlpha: 1 });
     return () => (_isMounted.current = false);
-  }, []);
+  }, [index]);
 
   useEffect(() => {
     const getData = async () => {
@@ -171,8 +198,6 @@ const DoTraining = (props) => {
     trainingDay.length &&
       setProgress(`${Math.round(((index + 1) / trainingDay.length) * 100)}%`);
   }, [index, trainingDay]);
-
-  console.log(trainingDay);
 
   return (
     <PageWrapper ref={(el) => (page = el)}>
@@ -209,6 +234,22 @@ const DoTraining = (props) => {
 
       <LastResults data={trainingDay[index]?.lastResultsArray} />
 
+      <Notes
+        currentUser={currentUser}
+        deleteNotes={deleteNotes}
+        exerciseName={trainingDay[index]?.exerciseName}
+        day={day}
+        training={training}
+        data={trainingDay[index]?.notesArr}
+      />
+
+      <AddNoteWrapper onClick={openAddNotes}>
+        <AddNoteText>dodaj notatkę</AddNoteText>
+        <AddNoteIconWrapper>
+          <EditIcon />
+        </AddNoteIconWrapper>
+      </AddNoteWrapper>
+
       <ButtonsWrapper wider>{trainingDay && renderRepsBoxes}</ButtonsWrapper>
       <ButtonsWrapper>
         <Button squere green bold onClick={updateByDefaultButton}>
@@ -221,6 +262,8 @@ const DoTraining = (props) => {
           +/-?
         </Button>
       </ButtonsWrapper>
+
+      {isAnimationOn && <SuccessAnim state={isAnimationOn} />}
 
       <Button onClick={() => history.goBack()}>Wróć</Button>
       {isModalVisible && (
@@ -236,6 +279,15 @@ const DoTraining = (props) => {
           resetReps={resetReps}
           data={trainingDay}
           index={index}
+          successAnimation={successAnimation}
+        />
+      )}
+      {isNotesOpen && (
+        <AddNotes
+          training={training}
+          day={day}
+          data={trainingDay[index]?.exerciseName}
+          close={closeAddNotes}
         />
       )}
     </PageWrapper>

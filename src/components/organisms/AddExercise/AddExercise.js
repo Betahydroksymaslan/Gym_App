@@ -40,7 +40,7 @@ const AddExercise = ({ closeModal, id, path }) => {
 
     try {
       if (_isMounted.current) {
-        await addExercise(currentUser.uid, path, id, data.name, exerciseData, repsArray);
+        await addExercise(currentUser.uid, path, id, data.name, exerciseData, repsArray, exerciseData.startWeight);
         setLoading(true);
         closeModal();
       }
