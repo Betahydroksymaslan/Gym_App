@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/Gym_App/static/css/main.a3029f3c.chunk.css",
-    "main.js": "/Gym_App/static/js/main.65eb4dd6.chunk.js",
-    "main.js.map": "/Gym_App/static/js/main.65eb4dd6.chunk.js.map",
+    "main.js": "/Gym_App/static/js/main.aa018e22.chunk.js",
+    "main.js.map": "/Gym_App/static/js/main.aa018e22.chunk.js.map",
     "runtime-main.js": "/Gym_App/static/js/runtime-main.e5e302fb.js",
     "runtime-main.js.map": "/Gym_App/static/js/runtime-main.e5e302fb.js.map",
     "static/js/2.ab559623.chunk.js": "/Gym_App/static/js/2.ab559623.chunk.js",
@@ -30,6 +30,6 @@
     "static/js/runtime-main.e5e302fb.js",
     "static/js/2.ab559623.chunk.js",
     "static/css/main.a3029f3c.chunk.css",
-    "static/js/main.65eb4dd6.chunk.js"
+    "static/js/main.aa018e22.chunk.js"
   ]
 }
