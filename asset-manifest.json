@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/Gym_App/static/css/main.a3029f3c.chunk.css",
-    "main.js": "/Gym_App/static/js/main.6774781b.chunk.js",
-    "main.js.map": "/Gym_App/static/js/main.6774781b.chunk.js.map",
+    "main.js": "/Gym_App/static/js/main.65eb4dd6.chunk.js",
+    "main.js.map": "/Gym_App/static/js/main.65eb4dd6.chunk.js.map",
     "runtime-main.js": "/Gym_App/static/js/runtime-main.e5e302fb.js",
     "runtime-main.js.map": "/Gym_App/static/js/runtime-main.e5e302fb.js.map",
     "static/js/2.ab559623.chunk.js": "/Gym_App/static/js/2.ab559623.chunk.js",
@@ -19,14 +19,17 @@
     "static/media/checkYesIcon.dc4cea6c.svg": "/Gym_App/static/media/checkYesIcon.dc4cea6c.svg",
     "static/media/deleteIcon.6f026905.svg": "/Gym_App/static/media/deleteIcon.6f026905.svg",
     "static/media/editIcon.5ade19e6.svg": "/Gym_App/static/media/editIcon.5ade19e6.svg",
+    "static/media/mainWeightIcon.3272e213.svg": "/Gym_App/static/media/mainWeightIcon.3272e213.svg",
+    "static/media/optionsIcon.b2ea4ce8.svg": "/Gym_App/static/media/optionsIcon.b2ea4ce8.svg",
     "static/media/scaleIcon.39c47ed2.svg": "/Gym_App/static/media/scaleIcon.39c47ed2.svg",
     "static/media/seriesIcon.40b10b0e.svg": "/Gym_App/static/media/seriesIcon.40b10b0e.svg",
-    "static/media/successIcon.775d977f.svg": "/Gym_App/static/media/successIcon.775d977f.svg"
+    "static/media/successIcon.775d977f.svg": "/Gym_App/static/media/successIcon.775d977f.svg",
+    "static/media/trainingIcon.77421d12.svg": "/Gym_App/static/media/trainingIcon.77421d12.svg"
   },
   "entrypoints": [
     "static/js/runtime-main.e5e302fb.js",
     "static/js/2.ab559623.chunk.js",
     "static/css/main.a3029f3c.chunk.css",
-    "static/js/main.6774781b.chunk.js"
+    "static/js/main.65eb4dd6.chunk.js"
   ]
 }
