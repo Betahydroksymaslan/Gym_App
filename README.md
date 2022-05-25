@@ -1,5 +1,5 @@
 # Gym App
-Application for creating and conducting strength training.
+Mobile app for creating and conducting strength training.
 ## Technologies
 Project is created with:
 * <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/React-icon.svg/512px-React-icon.svg.png" width="15px" height="15"> React 17
